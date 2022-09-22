@@ -6,6 +6,42 @@ class Livro{
     Disponibilidade
 }
 
+class Biblioteca{
+    Nome
+    Endereco
+    Telefone
+
+    BuscarLivro(livroParametro){
+        livros.forEach((livro,index) =>{
+            if(livro[index] == livroParametro){
+                console.log(livro)
+            }
+        })
+    }
+
+    VerificarDisponibilidade(nomeLivro){
+        livros.forEach((livro) =>{
+            if(livro.Titulo == nomeLivro){
+                if(livro.Disponibilidade == "Disponivel"){
+                    livro.Disponibilidade = true
+                }
+                else{
+                    livro.Disponibilidade = false
+                }
+            }
+        })
+    }
+
+    DevolverLivro(nomeLivro){
+        livros.forEach((livro) =>{
+            if(livro.VerificarDisponibilidade(nomeLivro)){
+               livro.Disponibilidade = "Indisponivel"
+            }
+        })
+    }
+}
+
+
 let livroUm = new Livro()
 livroUm.Titulo = "Arte da Guerra"
 livroUm.Autor = "Sun Tzu"
@@ -24,16 +60,11 @@ let livros = []
 livros.push(livroUm)
 livros.push(livroDois)
 
-class Biblioteca{
-    Nome
-    Endereco
-    Telefone
 
-    BuscarLivro(livroParametro){
-        livros.forEach((livro,index) =>{
-            if(livro == livroParametro){
-                console.log(livro)
-            }
-        })
-    }
-}
+let bibliotecaMuriae = new Biblioteca()
+bibliotecaMuriae.Nome = "Biblioteca de Muriaé"
+bibliotecaMuriae.Endereco = "Rua Silvera Brum"
+bibliotecaMuriae.Telefone = "3728-3072"
+bibliotecaMuriae.BuscarLivro(livroUm.Titulo)
+bibliotecaMuriae.VerificarDisponibilidade(livroUm.Titulo)
+bibliotecaMuriae.DevolverLivro(livroDois.Titulo)
